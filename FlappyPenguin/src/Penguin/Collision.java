@@ -23,7 +23,6 @@ public class Collision
         {
             kolizja=true;
         }
-        System.out.println();
         return kolizja;
     }
 }
