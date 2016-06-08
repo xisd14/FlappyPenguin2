@@ -32,10 +32,22 @@ public class DrawPenguin extends JComponent implements ActionListener,MouseListe
 	 */
 	public static enum STATE
 	{
+		/**
+		 * Stan odpowiedzialny na menu gry.
+		 */
 		MENU,
+		/**
+		 * Stan odpowiedzialny za granie.
+		 */
 		GAME,
+		/**
+		 * Stan odpowiedzialny za ranking.
+		 */
 		RANK,
-        GAMEOVER
+		/**
+		 * Stan odpowiedzialny za koniec gry.
+		 */
+		GAMEOVER
 	};
 	public static STATE State=STATE.MENU;
 
