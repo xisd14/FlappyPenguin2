@@ -11,8 +11,8 @@ import java.util.List;
 public class Sql
 {
     public static final String DRIVE="org.sqlite.JDBC";
-    //public static final String URL="jdbc:sqlite:C:\\Users\\Bartek`\\Desktop\\sqlite\\test.sqlite";
-    public static final String URL="jdbc:sqlite:F:\\FlappyPenguin\\out\\artifacts\\FlappyPenguin_jar\\test.sqlite";
+    //public static final String URL="jdbc:sqlite:C:\\Users\\Bartek`\\Desktop\\sqlite\\ranking.sqlite";
+    public static final String URL="jdbc:sqlite:F:\\FlappyPenguin\\out\\artifacts\\FlappyPenguin_jar\\ranking.sqlite";
     private static Connection conn;
     private static Statement stat;
 

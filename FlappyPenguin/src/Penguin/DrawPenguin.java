@@ -19,7 +19,7 @@ public class DrawPenguin extends JComponent implements ActionListener,MouseListe
 
 	private BufferedImage image;
 	private boolean q2=false, init=true, q3=false, sem=true,kolizja=false,kolizjaBariera=false,rank=true;
-	private int x=300, y=440, xPrze=600, xPrze2=1200, xPrze3=1200, score=0,moveBarier=6,pomocniczna=0,click=0,speed=30;
+	private int x=300, y=440, xPrze=600, xPrze2=1200, xPrze3=1200, score=0,moveBarier=6,pomocniczna=0,click=0,speed=22;
 	private Integer wynik=0;
 	private int collisionPoints[][]=new int[5][5];
 	private Menu menu=new Menu();
@@ -241,7 +241,7 @@ public class DrawPenguin extends JComponent implements ActionListener,MouseListe
 					y=y-5;
 					pomocniczna++;
 				}
-				if(pomocniczna==20)
+				if(pomocniczna>=18)
 				{
 					gora=false;
 				}
