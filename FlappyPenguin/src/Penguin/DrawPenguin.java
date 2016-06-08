@@ -16,17 +16,17 @@ import javax.swing.Timer;
  */
 public class DrawPenguin extends JComponent implements ActionListener,MouseListener
 {
-	Timer t=new Timer(18,this);
-	private BufferedImage image,apple;
+
+	private BufferedImage image;
 	private boolean q2=false, init=true, q3=false, sem=true,kolizja=false,kolizjaBariera=false,rank=true;
-	private int x=300, y=440, xPrze=600, xPrze2=1200, xPrze3=1200, score=0,movePenguin=50,moveBarier=6;
+	private int x=300, y=440, xPrze=600, xPrze2=1200, xPrze3=1200, score=0,moveBarier=6,pomocniczna=0,click=0,speed=30;
 	private Integer wynik=0;
 	private int collisionPoints[][]=new int[5][5];
 	private Menu menu=new Menu();
-	public boolean start=true,tmp=false,mouse=true;
+	public boolean tmp=false,mouse=true,gora=false;
 	private String aktualnyWynik,nazwa,lista;
 	private Sql s1=new Sql();
-
+	Timer t=new Timer(speed,this);
 	/**
 	 * Parametry przechowujące stany gry.
 	 */
@@ -106,11 +106,17 @@ public class DrawPenguin extends JComponent implements ActionListener,MouseListe
 				DrawScore s=new DrawScore();
 				aktualnyWynik="Score: "+Integer.toString(0);
 				aktualnyWynik="Score: "+Integer.toString(wynik);
+
 				s.drawActualScore(aktualnyWynik,g);
 				score++;
 				if(score%50==0)
 				{
 					wynik++;
+					if(wynik%100==0)
+					{
+						System.out.println("Podnosze speed");
+						speed-=2;
+					}
 				}
 			}
 			else
@@ -178,7 +184,7 @@ public class DrawPenguin extends JComponent implements ActionListener,MouseListe
 		if(!tmp)
 		{
 			//Opadanie pingiwna
-			y+=5;
+			//y+=5;
 			//Sterowanie barierami przez timer
 			if(xPrze<=-1200)
 			{
@@ -207,8 +213,43 @@ public class DrawPenguin extends JComponent implements ActionListener,MouseListe
 			{
 				xPrze2=1200;
 			}
-			sem=true;
+			if(click>=2&&gora==true)
+			{
+				try
+				{
+					image = ImageIO.read(new File("ikona_gora.png"));
+				}
+				catch (IOException ex)
+				{
+					System.out.println("Brak ikonki gory");
+					System.exit(1);
+				}
+				if(click>=2)
+				{
+					y=y-5;
+					pomocniczna++;
+				}
+				if(pomocniczna==20)
+				{
+					gora=false;
+				}
+			}
+			else
+			{
+				try
+				{
+					image = ImageIO.read(new File("ikona_dol.png"));
+				}
+				catch (IOException ex)
+				{
+					System.out.println("Brak ikonki dolu");
+					System.exit(1);
+				}
+				pomocniczna=0;
+				y+=8;
+			}
 			repaint();
+			sem=true;
 		}
 
 	}
@@ -221,8 +262,19 @@ public class DrawPenguin extends JComponent implements ActionListener,MouseListe
 		if(sem)
 		{
 			sem=false;
-			y=y-movePenguin;
-			repaint();
+			gora=true;
+			click++;
+			/*for (int i = 0; i <50; i++)
+			{
+				y=y-1;
+				repaint();
+			}*/
+			//gora=true;
+			//if(!oneClick)
+			//{
+
+
+		//	}
 		}
 		if(kolizja||kolizjaBariera)
 		{
@@ -238,7 +290,7 @@ public class DrawPenguin extends JComponent implements ActionListener,MouseListe
 				this.xPrze2=1200;
 				this.xPrze3=1200;
 				this.wynik=0;
-				this.q2=false; this.init=true;this.q3=false;this.sem=true;this.kolizja=false;kolizjaBariera=false;rank=true;
+				this.q2=false; this.init=true;this.q3=false;this.sem=true;this.kolizja=false;kolizjaBariera=false;rank=true;click=0;
 				State=STATE.MENU;
 		}
 	}

@@ -11,7 +11,8 @@ import java.util.List;
 public class Sql
 {
     public static final String DRIVE="org.sqlite.JDBC";
-    public static final String URL="jdbc:sqlite:C:\\Users\\Bartek`\\Desktop\\sqlite\\test.sqlite";
+    //public static final String URL="jdbc:sqlite:C:\\Users\\Bartek`\\Desktop\\sqlite\\test.sqlite";
+    public static final String URL="jdbc:sqlite:F:\\FlappyPenguin\\out\\artifacts\\FlappyPenguin_jar\\test.sqlite";
     private static Connection conn;
     private static Statement stat;
 
@@ -33,7 +34,7 @@ public class Sql
         }
         catch (Exception e)
         {
-            JOptionPane.showMessageDialog(null,e);
+            JOptionPane.showMessageDialog(null,"Blad polaczenia z baza. Rekordy nie będą dodawane!");
             System.out.println("Blad polaczenia");
             return null;
         }
@@ -58,7 +59,6 @@ public class Sql
        catch (Exception e)
        {
            System.err.println("Blad podczas dodawania rekordu do bazy!");
-           e.printStackTrace();
            return false;
        }
            return true;
